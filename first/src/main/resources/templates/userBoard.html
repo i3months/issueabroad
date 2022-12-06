@@ -1,0 +1,146 @@
+<!-- https://bootswatch.com/materia/ 의 snippet을 베이스로, 필요한 부분은 직접 만들거나 snippet을 커스텀해서 사용함.  -->
+<!-- 검색 결과를 확인 할 때와 비슷한 화면임. -->
+<!-- 메인 화면에서 게시판 부분을 누르면 확인 할 수 있는 화면. -->
+
+
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판 보기</title>
+    <!-- issueabroad.com -->
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-icons.css}" rel="stylesheet">
+    <link th:href="@{/css/prism-okaidia.css}" rel="stylesheet">
+    <link th:href="@{/css/custom.min.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23019901-1"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-23019901-1');
+    </script>
+</head>
+
+<body>
+    <!-- nav bar -->
+    <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
+        <div class="container">
+            <a href="/" class="navbar-brand">해외 커뮤니티 사이트 모아보기</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link upup" href="#" onclick="return false;"><i class="bi bi-arrow-up"></i> Top</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link downdown" href="#" onclick="return false;"><i class="bi bi-arrow-down"></i> Bottom</a>
+                    </li>
+                </ul>
+                <form class="d-flex" method="get" onsubmit="return false;" id="formform">
+                    <input class="form-control me-sm-2 searchinput" type="search" placeholder="제목으로 게시글을 검색하세요." value="">
+                    <button class="btn btn-secondary my-2 my-sm-0 searchbutton" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- nav bar fin -->
+
+    <!-- article line -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10">
+                <div class="bs-component">
+                    <div class="list-group">
+
+                        <a href="#" class="list-group-item list-group-item-action active">
+                            <span class="titletext">[[${title}]]게시판</span>
+                        </a>
+
+                        <a th:each="dto : ${result.dtoList}"
+                            class="list-group-item list-group-item-action justify-content-between align-items-center"
+                            th:href="@{/{url}/read/{id}(url = ${url}, id = ${dto.id})}">
+                            <time>[[${dto.createDate}]]</time>
+                            <span>[[${dto.title}]]</span>
+                            <span class="badge bg-primary rounded-pill comment">[[${dto.commentCount}]]</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-2">
+                <form class="card">
+                    <div class="card-body">
+                        <input type="text" class="form-control" placeholder="아이디" id="inputDefault">
+                        <input type="password" class="form-control" placeholder="비밀번호" id="inputDefault">
+
+                        <input type="submit" class="btn btn-primary btn-sm login" value="로그인">
+                        <button type="button" class="btn btn-primary btn-sm register" onclick="location.href='members/new'">회원가입</button>
+                        <button type="button" class="btn btn-primary btn-sm find" onclick="location.href='members/find'">찾기</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-10">
+                <div class="paging">
+                    <ul class="pagination">
+
+                        <li class="page-item" th:if="${result.prev}">
+                            <a class="page-link" th:href="@{/{paging}(paging= ${paging}, page=${result.start - 1})}" tabindex="-1">&laquo;</a>
+                        </li>
+
+                        <li th:class=" 'page-item ' + ${result.page == page?'active':''} "
+                            th:each="page: ${result.pageList}">
+                            <a class="page-link" th:href="@{/{paging}(paging=${paging}, page=${page})}">[[${page}]]</a>
+                        </li>
+
+                        <li class="page-item" th:if="${result.next}">
+                            <a class="page-link" th:href="@{/{paging}(paging=${paging}, page= ${result.end + 1})}">&raquo;</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2">
+
+            </div>
+        </div>
+
+    </div>
+    <!-- article line fin -->
+
+
+
+    <!-- footer -->
+    <div class="container foot">
+        <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home</a></li>
+                <li class="nav-item"><a href="https://github.com/months13" class="nav-link px-2 text-muted">Github</a></li>
+                <li class="nav-item"><a href="https://github.com/months13" class="nav-link px-2 text-muted">Email</a></li>
+            </ul>
+            <p class="text-center text-muted">© 2022 issueabroad, Inc</p>
+        </footer>
+    </div>
+    <!-- footer fin -->
+
+
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/js/prism.js}"></script>
+    <script th:src="@{/js/custom.js}"></script>
+    <script th:src="@{/js/script.js}"></script>
+</body>
+
+</html>

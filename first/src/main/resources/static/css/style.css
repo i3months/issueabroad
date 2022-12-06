@@ -1,0 +1,141 @@
+time {
+    float: right;
+    margin-left: 10px;
+    height: 17px;
+    line-height: 18px;
+    color: #a6a6a6;
+    font-size: 11px;
+    letter-spacing: 0;
+}
+
+.comment {
+    margin-left:5px;
+}
+
+.login {
+    width:110px;    
+    /* box-sizing: border-box; */
+    margin-left:10px;
+    margin-right:10px;
+    margin-top:15px;
+    font-weight: bold;
+}
+
+.register {
+    width:110px;
+    margin-left:10px;
+    margin-right:10px;
+    margin-top:5px;
+    font-weight: bold;
+}
+
+.find {
+    width:110px;
+    margin-left:10px;
+    margin-right:10px;
+    margin-top:5px;
+    font-weight: bold;
+}
+
+.titletext{
+    font-weight: bold;
+}
+
+.row {
+    /* margin-top:10px; */
+    margin-bottom:30px;
+    /* margin-bottom:10px; */
+}
+
+.searchp {
+    margin-top:15px;
+}
+
+.searchinput {
+    width: 300px;
+}
+
+.foot {
+    margin-top:100px;
+}
+
+.loginid {
+    font-weight: bold;
+}
+
+.paging {
+    display:flex;
+    justify-content: center;    
+}
+
+.titletext2 {
+    padding-top:20px;    
+    padding-bottom:20px;    
+}
+
+.scrap {
+    margin-right:10px;
+}
+
+.commenttext {
+    margin-top:10px;
+}
+
+.commentinfo {
+    margin-top:10px;    
+    height: 17px;
+    line-height: 18px;
+    color: #a6a6a6;
+    font-size: 11px;
+    letter-spacing: 0;
+}
+
+/* .option {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height:40px;
+    font-size:0;
+} */
+
+.commentinput {
+    display:inline;
+}
+
+.commentbutton {
+    height:40px;
+    width:40px;
+    margin-top:8px;
+}
+
+.anonycheck {
+    padding-left:0px;
+    padding-right:0px;    
+    height:40px;
+    width:40px;
+    margin-top:8px;
+    font-size:10px;
+    margin-right:10px;
+    writing-mode: horizontal-tb;
+}
+
+.registerbutton {
+    margin-top:50px;
+}
+
+.inputemail {
+    margin-top:30px;
+}
+
+.changelist {
+    margin-top:30px;
+}
+
+.website-link {
+    margin-left:30px;
+    color:#6495ED;
+}
+
+.language-select {
+    /*margin-top:10px;*/
+}
