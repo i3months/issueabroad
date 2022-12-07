@@ -2,7 +2,7 @@ import jaydebeapi
 from datetime import datetime
 import time
 
-### h2 database connection ###
+### h2 database connection ####
 conn = jaydebeapi.connect("org.h2.Driver",
                           "jdbc:h2:tcp://localhost/~/issueabroad",
                           ["sa", ""],
